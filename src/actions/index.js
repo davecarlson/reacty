@@ -8,6 +8,7 @@ export function checkAge (redirect = '/') {
 }
 
 export function ageVerified () {
+  localStorage.setItem('ageVerified', true)
   return {
     type: 'AGE_GATE_COMPLETED',
     payload: true

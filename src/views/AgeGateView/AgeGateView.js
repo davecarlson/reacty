@@ -32,7 +32,6 @@ export class AgeGateView extends React.Component<void, Props, void> {
   render () {
     return (
       <div>
-        AVP
         <h3>
           Passed Age Check:
           {' '}
