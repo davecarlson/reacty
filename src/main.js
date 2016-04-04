@@ -27,8 +27,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
 // hooks such as `onEnter`.
 const routes = makeRoutes(store)
 
-let hasverifiedAge = localStorage.getItem('ageVerified')
-if (hasverifiedAge !== null) {
+let hasverifiedAge = sessionStorage.getItem('ageVerified')
+let hasRememberedAge = localStorage.getItem('ageVerified')
+if (hasverifiedAge !== null || hasRememberedAge !== null) {
   store.dispatch(ageVerified())
 }
 
