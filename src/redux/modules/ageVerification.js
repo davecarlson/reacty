@@ -3,6 +3,8 @@
 // Constants
 // ------------------------------------
 export const AGE_GATE_COMPLETED = 'AGE_GATE_COMPLETED'
+export const AGE_GATE_MINIMUM_AGE = 18
+export const AGE_GATE_FAILED_REDIRECT = 'http://www.drinkaware.co.uk/'
 
 export function ageVerified () {
   return {

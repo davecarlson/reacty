@@ -1,9 +1,7 @@
 import { push } from 'react-router-redux'
 import moment from 'moment'
-import { ageVerified } from 'redux/modules/ageVerification'
-
-export const AGE_GATE_MINIMUM_AGE = 18
-export const AGE_GATE_FAILED_REDIRECT = 'http://www.drinkaware.co.uk/'
+import { cookie } from 'redux-effects-cookie'
+import { ageVerified, AGE_GATE_MINIMUM_AGE, AGE_GATE_FAILED_REDIRECT } from 'redux/modules/ageVerification'
 
 export function checkAge (values, redirect = '/') {
   return function (dispatch) {
@@ -11,9 +9,16 @@ export function checkAge (values, redirect = '/') {
     let age = moment().diff(dob, 'years')
     if (age >= AGE_GATE_MINIMUM_AGE) {
       if (values.rememberDob) {
-        localStorage.setItem('ageVerified', true)
+        dispatch({
+          type: 'EFFECT_LOCALSTORAGE',
+          payload: {
+            type: 'setItem',
+            key: 'ageVerified',
+            value: true
+          }
+        })
       }
-      sessionStorage.setItem('ageVerified', true)
+      dispatch(cookie('ageVerified', true))
 
       dispatch(ageVerified())
       dispatch(push(redirect))

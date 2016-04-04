@@ -2,10 +2,13 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import { routerMiddleware } from 'react-router-redux'
+import localStorage from 'redux-effects-localstorage'
+import cookie from 'redux-effects-cookie'
 
 export default function configureStore (initialState = {}, history) {
   // Compose final middleware and use devtools in debug environment
-  let middleware = applyMiddleware(thunk, routerMiddleware(history))
+  let middleware = applyMiddleware(thunk, localStorage(window.localStorage), cookie(), routerMiddleware(history))
+
   if (__DEBUG__) {
     const devTools = window.devToolsExtension
       ? window.devToolsExtension()
