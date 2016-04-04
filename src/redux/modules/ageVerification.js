@@ -4,6 +4,21 @@
 // ------------------------------------
 export const AGE_GATE_COMPLETED = 'AGE_GATE_COMPLETED'
 
+export function ageVerified (remember = false) {
+  if (remember) {
+    localStorage.setItem('ageVerified', true)
+  }
+  sessionStorage.setItem('ageVerified', true)
+  return {
+    type: 'AGE_GATE_COMPLETED',
+    payload: true
+  }
+}
+
+export const actions = {
+  ageVerified
+}
+
 // ------------------------------------
 // Action Handlers
 // ------------------------------------

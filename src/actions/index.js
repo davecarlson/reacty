@@ -1,5 +1,6 @@
 import { push } from 'react-router-redux'
 import moment from 'moment'
+import { ageVerified } from 'redux/modules/ageVerification'
 
 export function checkAge (values, redirect = '/') {
   return function (dispatch) {
@@ -13,16 +14,5 @@ export function checkAge (values, redirect = '/') {
         window.location = 'http://www.drinkaware.co.uk/'
       }
     }
-  }
-}
-
-export function ageVerified (remember = false) {
-  if (remember) {
-    localStorage.setItem('ageVerified', true)
-  }
-  sessionStorage.setItem('ageVerified', true)
-  return {
-    type: 'AGE_GATE_COMPLETED',
-    payload: true
   }
 }

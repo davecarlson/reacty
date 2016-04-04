@@ -6,7 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import makeRoutes from './routes'
 import Root from './containers/Root'
 import configureStore from './redux/configureStore'
-import { ageVerified } from 'actions/index'
+import { ageVerified } from 'redux/modules/ageVerification'
+
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: __BASENAME__
