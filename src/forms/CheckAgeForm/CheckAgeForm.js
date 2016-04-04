@@ -1,5 +1,6 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
+import classes from './CheckAgeForm.scss'
 
 export const fields = ['dobDay', 'dobMonth', 'dobYear', 'rememberDob']
 
@@ -21,6 +22,7 @@ const validate = (values) => {
 type Props = {
   handleSubmit: Function,
   fields: Object,
+  submitting: bool
 }
 export class CheckAge extends React.Component {
   props: Props;
@@ -39,21 +41,21 @@ export class CheckAge extends React.Component {
   }
 
   render () {
-    const { fields: { dobDay, dobMonth, dobYear, rememberDob }, handleSubmit } = this.props
+    const { fields: { dobDay, dobMonth, dobYear, rememberDob }, handleSubmit, submitting } = this.props
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form className={"form-inline"} onSubmit={handleSubmit}>
         <div className={"form-group"}>
           <input
             type={"tel"}
-            className={"form-control small"}
+            className={'form-control ' + classes['two']}
             minLength={1}
             maxLength={2}
             placeholder={"DD"}
             {...dobDay} />
           <input
             type={"tel"}
-            className={"form-control small"}
+            className={'form-control ' + classes['two']}
             pattern={"[0-9]*"}
             minLength={1}
             maxLength={2}
@@ -61,7 +63,7 @@ export class CheckAge extends React.Component {
             {...dobMonth} />
           <input
             type={"tel"}
-            className={"form-control"}
+            className={'form-control ' + classes['four']}
             pattern={"[0-9]*"}
             minLength={4}
             maxLength={4}
@@ -74,12 +76,12 @@ export class CheckAge extends React.Component {
           </label>
         </div>
         <div className={"help-block"}>
-          {dobDay ? this.renderError(dobDay.error) : ''}
-          {dobMonth ? this.renderError(dobMonth.error) : ''}
-          {dobYear ? this.renderError(dobYear.error) : ''}
+          {dobDay.touched ? this.renderError(dobDay.error) : ''}
+          {dobMonth.touched ? this.renderError(dobMonth.error) : ''}
+          {dobYear.touched ? this.renderError(dobYear.error) : ''}
         </div>
 
-        <button type={"submit"}>
+        <button type={"submit"} disabled={submitting} className={classes['avp-submit']}>
           <i/> Submit
         </button>
       </form>

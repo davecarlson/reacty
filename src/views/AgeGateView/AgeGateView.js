@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actionCreators from 'actions'
 import CheckAgeForm from 'forms/CheckAgeForm'
+
 type Props = {
   passedAgeGate: bool,
   location: Object,
