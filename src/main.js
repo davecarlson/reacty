@@ -7,7 +7,8 @@ import makeRoutes from './routes'
 import Root from './containers/Root'
 import configureStore from './redux/configureStore'
 import { ageVerified } from 'redux/modules/ageVerification'
-import { cookie } from 'redux-effects-cookie'
+import { bind } from 'redux-effects'
+import { createAction } from 'redux-actions'
 
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
@@ -29,9 +30,8 @@ const history = syncHistoryWithStore(browserHistory, store, {
 // hooks such as `onEnter`.
 const routes = makeRoutes(store)
 
-let hasverifiedAge = cookie('ageVerified')
 let hasRememberedAge = localStorage.getItem('ageVerified')
-if (hasverifiedAge !== null || hasRememberedAge !== null) {
+if (hasRememberedAge !== null) {
   store.dispatch(ageVerified())
 }
 
