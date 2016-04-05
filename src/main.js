@@ -7,8 +7,6 @@ import makeRoutes from './routes'
 import Root from './containers/Root'
 import configureStore from './redux/configureStore'
 import { ageVerified } from 'redux/modules/ageVerification'
-import { bind } from 'redux-effects'
-import { createAction } from 'redux-actions'
 
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({

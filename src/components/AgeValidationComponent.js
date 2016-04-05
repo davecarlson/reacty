@@ -16,15 +16,15 @@ export function requireAgeValidation (Component) {
     }
 
     componentWillMount () {
-      this.checkVerified()
+      this.checkVerified(this.props.passedAgeGate)
     }
 
     componentWillReceiveProps (nextProps) {
-      this.checkVerified()
+      this.checkVerified(nextProps.passedAgeGate)
     }
 
-    checkVerified () {
-      if (!this.props.passedAgeGate) {
+    checkVerified (passedAgeGate) {
+      if (!passedAgeGate) {
         let redirectAfterVerification = this.props.location.pathname
         this.props.dispatch(push('/check?next=' + redirectAfterVerification))
       }
